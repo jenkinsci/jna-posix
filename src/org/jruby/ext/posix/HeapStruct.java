@@ -34,6 +34,8 @@ package org.jruby.ext.posix;
 import com.sun.jna.FromNativeContext;
 import com.sun.jna.Platform;
 import com.sun.jna.Pointer;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Member;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
@@ -272,5 +274,19 @@ public class HeapStruct implements com.sun.jna.NativeMapped {
         public LongLong(long value) {
             super(value);
         }
+    }
+
+    protected <T extends Field> T[] array(T[] array) {
+        try {
+            Class<?> arrayClass = array.getClass().getComponentType();
+            Constructor<?> ctor = arrayClass.getDeclaredConstructor(new Class[] { arrayClass.getEnclosingClass() });
+            Object[] parameters = { };
+            for (int i = 0; i < array.length; ++i) {
+                array[i] = (T) ctor.newInstance(parameters);
+            }
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+        return array;
     }
 }
