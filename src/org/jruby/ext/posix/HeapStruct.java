@@ -280,7 +280,7 @@ public class HeapStruct implements com.sun.jna.NativeMapped {
         try {
             Class<?> arrayClass = array.getClass().getComponentType();
             Constructor<?> ctor = arrayClass.getDeclaredConstructor(new Class[] { arrayClass.getEnclosingClass() });
-            Object[] parameters = { };
+            Object[] parameters = { this };
             for (int i = 0; i < array.length; ++i) {
                 array[i] = (T) ctor.newInstance(parameters);
             }
