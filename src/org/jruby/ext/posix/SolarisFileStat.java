@@ -1,11 +1,19 @@
 package org.jruby.ext.posix;
 
 import com.sun.jna.Structure;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class SolarisFileStat extends BaseNativeFileStat {
     public static class TimeStruct extends Structure {
         public volatile int tv_sec;
         public volatile int tv_nsec;
+
+        @Override
+        protected List getFieldOrder() {
+            return Arrays.asList(new String[] { "tv_sec", "tv_nsec" });
+        }
     }
     public volatile int st_dev;
     public volatile int[] st_pad1;
@@ -86,5 +94,14 @@ public class SolarisFileStat extends BaseNativeFileStat {
 
     public int uid() {
         return st_uid;
+    }
+
+    @Override
+    protected List getFieldOrder() {
+        return Arrays.asList(new String[] { 
+            "st_dev", "st_pad1", "st_ino", "st_mode", "st_nlink", "st_uid",
+            "st_gid", "st_rdev", "st_pad2", "st_size", "st_pad3", "st_atim",
+            "st_mtim", "st_ctim", "st_blksize", "st_blocks", "pad7", "pad8",
+            "st_fstype", "st_pad4"});
     }
 }

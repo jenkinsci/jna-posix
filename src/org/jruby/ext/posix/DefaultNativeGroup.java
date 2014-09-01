@@ -27,6 +27,7 @@
 package org.jruby.ext.posix;
 
 import com.sun.jna.Pointer;
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,4 +69,9 @@ public final class DefaultNativeGroup extends NativeGroup implements Group {
         return lst.toArray(new String[0]);
     }
 
+    @Override
+    protected List getFieldOrder() {
+        return Arrays.asList(new String[] { 
+            "gr_name", "gr_passwd", "gr_gid", "gr_mem"});
+    }
 }

@@ -2,6 +2,9 @@
 package org.jruby.ext.posix;
 
 import com.sun.jna.Pointer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -51,5 +54,13 @@ public class SolarisPasswd extends NativePasswd implements Passwd {
     }
     public int getExpire() {
         return Integer.MAX_VALUE;
+    }
+
+    @Override
+    protected List getFieldOrder() {
+        return Arrays.asList(new String[] { 
+            "pw_name", "pw_passwd", "pw_uid", "pw_gid",
+            "pw_age", "pw_comment", "pw_gecos", "pw_dir",
+            "pw_shell"});
     }
 }

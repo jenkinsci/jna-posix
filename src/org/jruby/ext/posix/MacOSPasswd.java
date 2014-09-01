@@ -4,6 +4,9 @@ package org.jruby.ext.posix;
 
 import com.sun.jna.NativeLong;
 import com.sun.jna.Pointer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -63,5 +66,12 @@ public final class MacOSPasswd extends NativePasswd implements Passwd {
     
     public int getExpire() {
         return pw_expire.intValue();
+    }
+
+    @Override
+    protected List getFieldOrder() {
+        return Arrays.asList(new String[] { 
+            "pw_name", "pw_passwd", "pw_uid", "pw_gid", "pw_change", "pw_class",
+            "pw_gecos", "pw_dir", "pw_shell", "pw_expire"});
     }
 }

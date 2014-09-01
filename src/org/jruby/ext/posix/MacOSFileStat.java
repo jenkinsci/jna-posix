@@ -1,5 +1,9 @@
 package org.jruby.ext.posix;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class MacOSFileStat extends BaseNativeFileStat {
     public volatile int st_dev;       // device inode resides on (dev_t)
     public volatile int st_ino;       // inode's number (ino_t)
@@ -85,5 +89,14 @@ public class MacOSFileStat extends BaseNativeFileStat {
             ", RDEV: " + st_rdev + ", BLOCKS: " + st_blocks + ", SIZE: " + st_size +
             ", BLKSIZE: " + st_blksize + ", FLAGS: " + st_flags + ", GEN: " + st_gen +
             ", ATIME: " + st_atime + ", MTIME: " + st_mtime + ", CTIME: " + st_ctime;
+    }
+
+    @Override
+    protected List getFieldOrder() {
+        return Arrays.asList(new String[] { 
+            "st_dev", "st_ino", "st_mode", "st_nlink", "st_uid",
+            "st_gid", "st_rdev", "st_atime", "st_atimensec", "st_mtime",
+            "st_mtimensec", "st_ctime", "st_ctimensec", "st_size",
+            "st_blocks", "st_blksize", "st_flags", "st_gen", "st_lspare"});
     }
 }

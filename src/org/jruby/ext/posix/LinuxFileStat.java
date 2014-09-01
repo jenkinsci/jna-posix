@@ -1,5 +1,9 @@
 package org.jruby.ext.posix;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class LinuxFileStat extends BaseNativeFileStat {
     public long st_dev;
     public short __pad1;
@@ -76,5 +80,14 @@ public class LinuxFileStat extends BaseNativeFileStat {
 
     public int uid() {
         return st_uid;
+    }
+
+    @Override
+    protected List getFieldOrder() {
+        return Arrays.asList(new String[] {
+            "st_dev", "__pad1", "st_ino", "st_mode", "st_nlink", "st_uid",
+            "st_gid", "st_rdev", "__pad2", "st_size", "st_blksize",
+            "st_blocks", "st_atime", "st_atimensec", "st_mtime",
+            "st_mtimensec"});
     }
 }

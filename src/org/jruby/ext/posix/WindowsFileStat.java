@@ -1,5 +1,9 @@
 package org.jruby.ext.posix;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class WindowsFileStat extends BaseNativeFileStat {
     public int st_dev;
     public short st_ino;
@@ -157,5 +161,13 @@ public class WindowsFileStat extends BaseNativeFileStat {
 	    ", st_ctime: " + st_ctime +
 	    ", st_mtime: " + st_mtime +
 	    ", st_ino: " + st_ino;
+    }
+
+    @Override
+    protected List getFieldOrder() {
+        return Arrays.asList(new String[] { 
+            "st_dev", "st_ino", "st_mode", "st_nlink", "st_uid", "st_gid",
+            "st_rdev", "st_size", "st_atime", "spare1", "st_mtime", "spare2",
+            "st_ctime", "st_blksize", "st_blocks"});
     }
 }
