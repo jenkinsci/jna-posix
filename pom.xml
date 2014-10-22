@@ -1,11 +1,10 @@
 <?xml version="1.0" ?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.jruby.ext.posix</groupId>
   <artifactId>jna-posix</artifactId>
   <packaging>jar</packaging>
-  <version>1.0.3</version>
+  <version>1.0.3-jenkins-1-SNAPSHOT</version>
   <name>JNA-POSIX</name>
   <description>
     Common cross-project/cross-platform POSIX APIs
@@ -17,9 +16,9 @@
   </issueManagement>
 
   <scm>
-    <connection>scm:svn:http://svn.codehaus.org/jruby-contrib</connection>
-    <developerConnection>scm:svn:https://svn.codehaus.org/jruby-contrib</developerConnection>
-    <url>http://svn.codehaus.org/jruby-contrib</url>
+    <connection>scm:git:https://github.com/jenkinsci/jna-posix.git</connection>
+    <developerConnection>scm:git:https://github.com/jenkinsci/jna-posix.git</developerConnection>
+    <url>https://github.com/jenkinsci/jna-posix</url>
   </scm>
 
   <licenses>
@@ -42,33 +41,25 @@
 
   <distributionManagement>
     <repository>
-      <id>codehaus-jruby-repository</id>
-      <name>JRuby Central Repository</name>
-      <url>dav:https://dav.codehaus.org/repository/jruby</url>
+      <id>maven.jenkins-ci.org</id>
+      <url>http://maven.jenkins-ci.org:8081/content/repositories/releases</url>
     </repository>
     <snapshotRepository>
-      <id>codehaus-jruby-snapshot-repository</id>
-      <name>JRuby Central Development Repository</name>
-      <url>dav:https://dav.codehaus.org/snapshots.repository/jruby</url>
+      <id>maven.jenkins-ci.org</id>
+      <url>http://maven.jenkins-ci.org:8081/content/repositories/snapshots</url>
     </snapshotRepository>
-    <site>
-      <id>codehaus-jruby-site</id>
-      <name>JRuby Maven site</name>
-      <url>dav:https://dav.codehaus.org/jruby/info</url>
-    </site>
   </distributionManagement>
 
   <repositories>
     <repository>
-      <id>codehaus</id>
-      <name>Codehaus Repository</name>
+      <id>repo.jenkins-ci.org</id>
+      <url>http://repo.jenkins-ci.org/public/</url>
       <releases>
         <enabled>true</enabled>
       </releases>
       <snapshots>
         <enabled>false</enabled>
       </snapshots>
-      <url>http://repository.codehaus.org</url>
     </repository>
   </repositories>
 
